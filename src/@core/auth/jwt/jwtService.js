@@ -3,7 +3,7 @@ import axios from "axios";
 import jwtDefaultConfig from "./jwtDefaultConfig";
 
 // API Base URL - make this configurable
-const API_BASE_URL = "http://192.168.1.3:8006" ;
+const API_BASE_URL = "http://192.168.1.6:8006" ;
 axios.defaults.baseURL = API_BASE_URL;
 
 export default class JwtService {
@@ -185,4 +185,25 @@ export default class JwtService {
   createMerchant(merchantData) {
     return axios.post(this.jwtConfig.createMerchant, merchantData);
   }
+
+  sendOtpForEmail(token, payload) {
+  return axios.post(
+    this.jwtConfig.sendOtpEndpointForEmail.replace('{token}', token) , payload
+  )
+}
+// Verify email token (for the initial token verification on page load)
+verifyEmailToken(token) {
+  return axios.get(`/auth/verify-email?token=${token}`)
+}
+
+// Decrypt token endpoint
+decryptToken(token) {
+  return axios.get(`/auth/decrypt-token/${token}`)
+}
+
+// Update phone number endpoint
+updatePhoneNumber(data) {
+  return axios.post('/auth/update-phone', data)
+}
+
 }

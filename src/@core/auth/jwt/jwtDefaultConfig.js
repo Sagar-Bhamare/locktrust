@@ -19,6 +19,13 @@ export default {
   usersEndpoint: "/users",
   createMerchant:"/auth/createMerchant",
 
+
+  // login endpoints
+  sendOtpEndpointForEmail : "/auth/verifyPhone/{token}",
+   verifyEmailTokenEndpoint: "/auth/verify-email",
+   decryptTokenEndpoint: "/auth/decrypt-token",
+  updatePhoneEndpoint: "/auth/update-phone",
+
   // Role-based Endpoints
   rolesEndpoint: "/roles",
   permissionsEndpoint: "/permissions",
